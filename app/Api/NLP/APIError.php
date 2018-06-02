@@ -18,10 +18,16 @@ class APIError
      * APIError constructor.
      */
     public function __construct(stdClass $json) {
+        if (isset($json->error)){
+            foreach ($json->error as $property => $value){
 
-/*        foreach ($json->error as $property => $value){
+                $this->$property = $value;
+            }
+        }
+        foreach ($json as $property => $value){
 
             $this->$property = $value;
-        }*/
+        }
+        dd($this->$property);
     }
 }

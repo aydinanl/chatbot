@@ -48,8 +48,9 @@ class TestCtrl extends Controller
             }
         }
 
-        $OP_TYPE = 'POST';
-        $OP_URL = 'http://localhost:8020/api/feedback';
+        $OP_TYPE = 'GET';
+        //$OP_URL = 'http://localhost:8020/api/feedback';
+        $OP_URL = 'http://api.openweathermap.org/data/2.5/weather?q=istanbul,tr&units=metric&lang=Tr&appid=4c0a3258fda02c34d509a0f20e65a53d';
         $OP_HEADERS = $b_b_arr;
 
         $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
@@ -62,6 +63,6 @@ class TestCtrl extends Controller
 
     public function getTime()
     {
-        return response()->json(Carbon::now());
+        return response()->json(Carbon::now(3)->toTimeString());
     }
 }
