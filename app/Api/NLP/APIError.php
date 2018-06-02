@@ -28,6 +28,5 @@ class APIError
 
             $this->$property = $value;
         }
-        dd($this->$property);
     }
 }

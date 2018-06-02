@@ -29,7 +29,7 @@ class ConservationHandler
     {
         $answer = collect($intent);
 
-        //Şuan hava {response.main.temp} derece.
+        //Şuan hava {response.current.temp_c} derece.
         $str = $answer['output'];
 
         $first = strpos($str, '{');
@@ -54,7 +54,8 @@ class ConservationHandler
     {
         $res = collect($response);
 
-        for ($i = 1;$i<count($nodes);$i++){
+        //for ($i = 1;$i<count($nodes);$i++){
+        for ($i = 1, $iMax = \count($nodes); $i< $iMax; $i++){
             $res = collect($res[$nodes[$i]]);
         }
         return $res[0];

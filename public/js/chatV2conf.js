@@ -56,7 +56,7 @@ function giveAnswer() {
     console.log(message);
     $('<div class="message loading new">' +
         '<figure class="avatar">' +
-        '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" />' +
+        '<img src="/img/avatar.jpg" />' +
         '</figure><span></span></div>').appendTo($('.mCSB_container'));
     updateScrollbar();
     $('.message-input').val(null);
@@ -69,7 +69,7 @@ function giveAnswer() {
                 console.log(data);
                 intent.value_order++;
 
-                $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + data.answer + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                $('<div class="message new"><figure class="avatar"><img src="/img/avatar.jpg" /></figure>' + data.answer + '</div>').appendTo($('.mCSB_container')).addClass('new');
                 setDate();
                 updateScrollbar();
                 $('.message.loading').remove();
@@ -91,13 +91,13 @@ function giveAnswer() {
                     console.log(data);
                     insert = true;
                     intent = data;
-                    $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + data.answer + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    $('<div class="message new"><figure class="avatar"><img src="/img/avatar.jpg" /></figure>' + data.answer + '</div>').appendTo($('.mCSB_container')).addClass('new');
                     setDate();
                     updateScrollbar();
                     $('.message.loading').remove();
 
                 }else{
-                    $('<div class="message new"><figure class="avatar"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
+                    $('<div class="message new"><figure class="avatar"><img src="/img/avatar.jpg" /></figure>' + data + '</div>').appendTo($('.mCSB_container')).addClass('new');
                     setDate();
                     updateScrollbar();
                     $('.message.loading').remove();

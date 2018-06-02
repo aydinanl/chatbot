@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Handlers;
 
 use App\Api\NLP\NLPAPI;
@@ -9,6 +10,7 @@ class ChatHandler
     public static function intentHasVariable(Intents $intent)
     {
         $null_order = 0;
+        $c = \count($intent['variable_values']);
         foreach ($intent['variable_values'] as $intent_value) {
             if ($intent_value === null) {
                 $answer = [
@@ -18,12 +20,13 @@ class ChatHandler
                     'value_order' => $null_order,
                     'question_count' => \count($intent['variable_values'])
                 ];
+
                 return response()->json($answer);
             }
             $null_order++;
         }
 
-        if($intent['has_operation'] == true){
+        if ($intent['has_operation'] == true) {
             return self::intentHasOperation($intent);
         }
 
@@ -41,8 +44,8 @@ class ChatHandler
         $b_b_arr = [];
         $c_index = 0;
 
-        if($build_b !== null){
-            foreach ($build_b as $b){
+        if ($build_b !== null) {
+            foreach ($build_b as $b) {
                 $b_b_arr[$b] = $intent['variable_values'][$c_index];
                 $c_index++;
             }
@@ -50,8 +53,8 @@ class ChatHandler
 
         $OP_HEADERS = $b_b_arr;
 
-        $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
-        $out_S = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
+        $response = (new NLPAPI)->doOperation($OP_TYPE, $OP_URL, $OP_HEADERS)->json_response;
+        $out_S = ConservationHandler::changeOutputWithResponseVariable($intent, $response);
 
         return response()->json($out_S['answer']);
     }

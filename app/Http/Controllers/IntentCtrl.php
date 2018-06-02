@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\NLP\NLPAPI;
+use App\Handlers\ChatHandler;
 use App\Handlers\ConservationHandler;
 use App\Helpers\Utility;
 use App\Models\Intents;
@@ -46,7 +47,7 @@ class IntentCtrl extends Controller
 
         //Variables
         if (isset($request->has_variable)){
-            $intent->has_variable = trim($request->has_variable);
+            $intent->has_variable = (boolean) trim($request->has_variable);
             $intent->variable_names = $request->variable_names;
             $intent->variable_questions = $request->variable_questions;
 
@@ -59,15 +60,14 @@ class IntentCtrl extends Controller
 
         //Operations
         if (isset($request->has_operation)){
-            $intent->has_operation = trim($request->has_operation);
+            $intent->has_operation = (boolean) trim($request->has_operation);
             $intent->operation_type = strtoupper(trim($request->operation_type));
             $intent->operation_url = trim($request->operation_url);
-            $intent->operation_headers = trim($request->operation_headers);
         }
 
         //Forward
         if(isset($request->forward)){
-            $intent->forward = trim($request->forward);
+            $intent->forward = (boolean) trim($request->forward);
             $intent->forwardID = trim($request->forwardID);
         }
 
@@ -128,6 +128,14 @@ class IntentCtrl extends Controller
         $answer = collect($intent);
 
         ++$next;
+        if ($intent['has_operation'] === true || $next == \count($answer['variable_questions'])){
+            $ans = ChatHandler::intentHasOperation($intent);
+            $answer = [
+                'answer' => $ans->original,
+            ];
+            return response()->json($answer);
+        }
+
         if($next == \count($answer['variable_questions'])){
             $out = ConservationHandler::changeOutputWithVariable($intent);
             return response()->json($out);

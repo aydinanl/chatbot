@@ -21,7 +21,7 @@
         <h1>ChatBot Project</h1>
         <h2>IAU</h2>
         <figure class="avatar">
-            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80.jpg" /></figure>
+            <img src="/img/avatar.jpg" /></figure>
     </div>
     <div class="messages">
         <div class="messages-content"></div>
@@ -40,7 +40,6 @@
 <script src="/plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js"></script>
 
-<script src="/js/loading.js"></script>
 <script src="/js/chatV2conf.js"></script>
 
 </html>

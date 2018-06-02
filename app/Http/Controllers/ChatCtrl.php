@@ -33,35 +33,42 @@ class ChatCtrl extends Controller
         $intents = Intents::all();
 
         $count = 0;
+        //Match intent due to receive message.
         foreach ($intents as $intent) {
-            $intent_root_count = count($intent['define_words']);
+            $intent_root_count = \count($intent['define_words']);
             $has_count = $intent_root_count - 3;
+
             foreach ($processed_message as $messages) {
                 if (\in_array($messages, $intent['define_words'], true)) {
                     $count++;
+
                     if ($count >= $has_count) {
-                        if ($intent['has_variable'] == true) {
-                            return ChatHandler::intentHasVariable($intent);
-                        }
-                        // TODO correct flow.
-                        //Intents with operations.
-                        if($intent['has_operation'] == true){
-                            return ChatHandler::intentHasOperation($intent);
-                        }
-
-                        if ($intent['forward'] == true) {
-                            return ChatHandler::intentHasForward($intent);
-                        }
-
-                        //None of them activated, send default intent message.
-                        return response()->json($intent['output']);
+                        return $this->response($intent);
                     }
-
                 }
             }
         }
 
         //No intent could matched.
         return response()->json('Bu konu hakkında bilgi veremiyorum.');
+    }
+
+    public function response(Intents $intent)
+    {
+        if ($intent['has_variable'] === true) {
+            return ChatHandler::intentHasVariable($intent);
+        }
+        // TODO correct flow.
+        //Intents with operations.
+        if ($intent['has_operation'] === true) {
+            return ChatHandler::intentHasOperation($intent);
+        }
+
+        if ($intent['forward'] === true) {
+            return ChatHandler::intentHasForward($intent);
+        }
+
+        //None of them activated, send default intent message.
+        return response()->json($intent['output']);
     }
 }
