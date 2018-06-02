@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\NLP\NLPAPI;
+use App\Handlers\ChatHandler;
 use App\Handlers\ConservationHandler;
 use App\Models\Feedback;
 use App\Models\Intents;
@@ -17,7 +18,7 @@ class ChatCtrl extends Controller
         //Get message of user.
         $message = trim($request->message);
         if (!$message) {
-            return response()->json('Mesaj giriniz.');
+            return response()->json('Size nasıl yardımcı olabilirim?');
         }
         //Process message with NLP API.
         $api = collect((new NLPAPI)->getNlpWords($message)->json_response);
@@ -40,76 +41,18 @@ class ChatCtrl extends Controller
                     $count++;
                     if ($count >= $has_count) {
                         if ($intent['has_variable'] == true) {
-                            $null_order = 0;
-                            foreach ($intent['variable_values'] as $intent_value) {
-                                if ($intent_value === null) {
-                                    $answer = [
-                                        'answer' => $intent['variable_questions'][$null_order],
-                                        'has_value' => true,
-                                        'intent_id' => $intent['id'],
-                                        'value_order' => $null_order,
-                                        'question_count' => \count($intent['variable_values'])
-                                    ];
-                                    return response()->json($answer);
-                                }
-                                $null_order++;
-                            }
-
-                            if($intent['has_operation'] == true){
-                                $OP_TYPE = $intent['operation_type'];
-                                $OP_URL = $intent['operation_url'];
-                                //IF Type POST
-                                $build_b = $intent['variable_names'];
-
-                                $b_b_arr = [];
-                                $c_index=0;
-                                foreach ($build_b as $b){
-                                    $b_b_arr[$b] = $intent['variable_values'][$c_index];
-                                    $c_index++;
-                                }
-                                $OP_HEADERS = $build_b;
-
-                                $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
-                                $out_S = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
-
-                                return response()->json($out_S['answer']);
-                            }
-
-                            $out = ConservationHandler::changeOutputWithVariable($intent);
-                            return response()->json($out['answer']);
+                            return ChatHandler::intentHasVariable($intent);
                         }
-
                         // TODO correct flow.
                         //Intents with operations.
                         if($intent['has_operation'] == true){
-                            $OP_TYPE = $intent['operation_type'];
-                            $OP_URL = $intent['operation_url'];
-                            //IF Type POST
-                            $build_b = $intent['variable_names'];
-
-                            $b_b_arr = [];
-                            $c_index=0;
-                            foreach ($build_b as $b){
-                                $b_b_arr[$b] = $intent['variable_values'][$c_index];
-                                $c_index++;
-                            }
-                            $OP_HEADERS = $build_b;
-
-                            $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
-                            $out_S = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
-
-                            return response()->json($out_S['answer']);
+                            return ChatHandler::intentHasOperation($intent);
                         }
 
                         if ($intent['forward'] == true) {
-                            // TODO çoklu forwardID olarak düzenle.
-                            $forward = Intents::find($intent['forwardID']);
-                            $answer = [];
-                            array_push($answer, $intent['output'], $forward['output']);
-
-                            return response()->json($answer);
+                            return ChatHandler::intentHasForward($intent);
                         }
-
+                        //None of them activated, send default intent message.
                         return response()->json($intent['output']);
                     }
 
@@ -120,10 +63,7 @@ class ChatCtrl extends Controller
         return response()->json('Bu konu hakkında bilgi veremiyorum.');
     }
 
-    public function intenHasVariable(Intents $intents)
-    {
 
-    }
     public function giveFeedback(Request $request)
     {
         $test = new Feedback;
