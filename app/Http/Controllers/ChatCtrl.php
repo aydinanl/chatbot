@@ -8,7 +8,6 @@ use App\Handlers\ConservationHandler;
 use App\Models\Feedback;
 use App\Models\Intents;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class ChatCtrl extends Controller
 {
@@ -20,6 +19,7 @@ class ChatCtrl extends Controller
         if (!$message) {
             return response()->json('Size nasıl yardımcı olabilirim?');
         }
+
         //Process message with NLP API.
         $api = collect((new NLPAPI)->getNlpWords($message)->json_response);
 
@@ -29,13 +29,13 @@ class ChatCtrl extends Controller
             $processed_message[] = strtolower($word->KeywordRoot);
         }
 
+        //Get all intents for matching.
         $intents = Intents::all();
 
         $count = 0;
         foreach ($intents as $intent) {
             $intent_root_count = count($intent['define_words']);
             $has_count = $intent_root_count - 3;
-
             foreach ($processed_message as $messages) {
                 if (\in_array($messages, $intent['define_words'], true)) {
                     $count++;
@@ -61,6 +61,7 @@ class ChatCtrl extends Controller
             }
         }
 
+        //No intent could matched.
         return response()->json('Bu konu hakkında bilgi veremiyorum.');
     }
 }

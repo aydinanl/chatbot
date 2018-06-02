@@ -24,23 +24,7 @@ class ChatHandler
         }
 
         if($intent['has_operation'] == true){
-            $OP_TYPE = $intent['operation_type'];
-            $OP_URL = $intent['operation_url'];
-            //IF Type POST
-            $build_b = $intent['variable_names'];
-
-            $b_b_arr = [];
-            $c_index=0;
-            foreach ($build_b as $b){
-                $b_b_arr[$b] = $intent['variable_values'][$c_index];
-                $c_index++;
-            }
-            $OP_HEADERS = $build_b;
-
-            $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
-            $out_S = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
-
-            return response()->json($out_S['answer']);
+            return self::intentHasOperation($intent);
         }
 
         $out = ConservationHandler::changeOutputWithVariable($intent);
@@ -55,15 +39,16 @@ class ChatHandler
         $build_b = $intent['variable_names'];
 
         $b_b_arr = [];
-        $c_index=0;
-        if(isset($build_b)){
+        $c_index = 0;
+
+        if($build_b !== null){
             foreach ($build_b as $b){
                 $b_b_arr[$b] = $intent['variable_values'][$c_index];
                 $c_index++;
             }
         }
 
-        $OP_HEADERS = $build_b;
+        $OP_HEADERS = $b_b_arr;
 
         $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
         $out_S = ConservationHandler::changeOutputWithResponseVariable($intent,$response);

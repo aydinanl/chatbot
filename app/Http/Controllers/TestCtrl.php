@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Api\NLP\NLPAPI;
+use App\Handlers\ConservationHandler;
 use App\Models\Feedback;
 use App\Models\Intents;
 use Illuminate\Http\Request;
@@ -22,26 +23,29 @@ class TestCtrl extends Controller
 
     public function testGet(Request $request)
     {
-        /*        $intent = Intents::find('5b106b6062bed0017c32cfaa');
+        /*
+        $intent = Intents::find('5b106b6062bed0017c32cfaa');
 
-                $OP_TYPE = $intent['operation_type'];
-                $OP_URL = $intent['operation_url'];
-                $OP_HEADERS = $intent['operation_headers'];
-                // TODO !lats of todo. first priority to development.
+        $OP_TYPE = $intent['operation_type'];
+        $OP_URL = $intent['operation_url'];
+        $OP_HEADERS = $intent['operation_headers'];
 
-                $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
-                $out = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
+        $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
+        $out = ConservationHandler::changeOutputWithResponseVariable($intent,$response);
 
-                dd($out);*/
+        dd($out);
+        */
 
         $intent = Intents::find('5b10989762bed0017d7334f9');
         $build_b = $intent['variable_names'];
 
         $b_b_arr = [];
         $c_index=0;
-        foreach ($build_b as $b){
-            $b_b_arr[$b] = $intent['variable_values'][$c_index];
-            $c_index++;
+        if ($build_b){
+            foreach ($build_b as $b){
+                $b_b_arr[$b] = $intent['variable_values'][$c_index];
+                $c_index++;
+            }
         }
 
         $OP_TYPE = 'POST';
