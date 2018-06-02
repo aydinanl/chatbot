@@ -29,6 +29,6 @@ Route::post('/chatbot', 'ChatCtrl@receive');
 
 /* Test Endpoints */
 
-Route::post('/feedback', 'ChatCtrl@giveFeedback');
-Route::get('/test-get', 'ChatCtrl@testGet');
-Route::get('/get-time', 'ChatCtrl@getTime');
+Route::post('/feedback', 'TestCtrl@giveFeedback');
+Route::get('/test-get', 'TestCtrl@testGet');
+Route::get('/get-time', 'TestCtrl@getTime');

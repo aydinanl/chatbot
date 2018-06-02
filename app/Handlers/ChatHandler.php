@@ -56,10 +56,13 @@ class ChatHandler
 
         $b_b_arr = [];
         $c_index=0;
-        foreach ($build_b as $b){
-            $b_b_arr[$b] = $intent['variable_values'][$c_index];
-            $c_index++;
+        if(isset($build_b)){
+            foreach ($build_b as $b){
+                $b_b_arr[$b] = $intent['variable_values'][$c_index];
+                $c_index++;
+            }
         }
+
         $OP_HEADERS = $build_b;
 
         $response = (new NLPAPI)->doOperation($OP_TYPE,$OP_URL,$OP_HEADERS)->json_response;
