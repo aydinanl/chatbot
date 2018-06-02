@@ -128,10 +128,11 @@ class IntentCtrl extends Controller
         $answer = collect($intent);
 
         ++$next;
-        if ($intent['has_operation'] === true || $next == \count($answer['variable_questions'])){
+        if ($intent['has_operation'] === true && $next == \count($answer['variable_questions'])){
             $ans = ChatHandler::intentHasOperation($intent);
             $answer = [
                 'answer' => $ans->original,
+                'exit_order' => $value_order
             ];
             return response()->json($answer);
         }
