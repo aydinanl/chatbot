@@ -13,10 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
+//Login
+Route::post('/login', 'LoginCtrl@login');
+
+
+//User
+Route::post('/user', 'UserCtrl@create');
+Route::get('/user/{id}', 'UserCtrl@read');
+
 /* Admin Endpoints */
 // TODO login and token system implementation
 
 //Intents
+
 Route::post('/chatbot/intent', 'IntentCtrl@create');
 Route::get('/chatbot/intent', 'IntentCtrl@read');
 Route::get('/chatbot/intent/{id}', 'IntentCtrl@readSingle');

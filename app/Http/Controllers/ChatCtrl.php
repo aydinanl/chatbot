@@ -55,15 +55,16 @@ class ChatCtrl extends Controller
 
     public function response(Intents $intent)
     {
+        //Intents with variables.
         if ($intent['has_variable'] === true) {
             return ChatHandler::intentHasVariable($intent);
         }
-        // TODO correct flow.
         //Intents with operations.
         if ($intent['has_operation'] === true) {
             return ChatHandler::intentHasOperation($intent);
         }
 
+        //Intents with forward.
         if ($intent['forward'] === true) {
             return ChatHandler::intentHasForward($intent);
         }
