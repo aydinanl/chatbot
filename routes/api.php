@@ -17,12 +17,14 @@ use Illuminate\Http\Request;
 Route::post('/login', 'LoginCtrl@login');
 
 
-//User
-Route::post('/user', 'UserCtrl@create');
-Route::get('/user/{id}', 'UserCtrl@read');
-
 /* Admin Endpoints */
-// TODO login and token system implementation
+
+//User Endpoints
+Route::middleware(['AllowedUserTypes:admin,user'])->group(function (){
+    Route::post('/user', 'UserCtrl@create');
+    Route::get('/user/{id}', 'UserCtrl@read');
+});
+
 
 //Intents
 

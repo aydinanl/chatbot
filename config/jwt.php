@@ -97,10 +97,10 @@ return [
     | Some people may want this behaviour for e.g. a mobile app.
     | This is not particularly recommended, so make sure you have appropriate
     | systems in place to revoke the token if necessary.
-    |
+    | Now 1 Month
     */
 
-    'ttl' => env('JWT_TTL', 60),
+    'ttl' => env('JWT_TTL', 43829),
 
     /*
     |--------------------------------------------------------------------------
@@ -116,10 +116,10 @@ return [
     | Some may want this instead of never expiring tokens for e.g. a mobile app.
     | This is not particularly recommended, so make sure you have appropriate
     | systems in place to revoke the token if necessary.
-    |
+    | Defaults to 1 Month
     */
 
-    'refresh_ttl' => env('JWT_REFRESH_TTL', 20160),
+    'refresh_ttl' => env('JWT_REFRESH_TTL', 43829),
 
     /*
     |--------------------------------------------------------------------------
@@ -134,32 +134,6 @@ return [
     */
 
     'algo' => env('JWT_ALGO', 'HS256'),
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Model namespace
-    |--------------------------------------------------------------------------
-    |
-    | Specify the full namespace to your User model.
-    | e.g. 'Acme\Entities\User'
-    |
-    */
-
-    'user' => 'App\Models\User',
-
-    /*
-    |--------------------------------------------------------------------------
-    | User identifier
-    |--------------------------------------------------------------------------
-    |
-    | Specify a unique property of the user that will be added as the 'sub'
-    | claim of the token payload.
-    |
-    */
-
-    'identifier' => 'id',
-
 
     /*
     |--------------------------------------------------------------------------

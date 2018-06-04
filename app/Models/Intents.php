@@ -23,7 +23,7 @@ class Intents extends Model
     protected $hidden = [];
 
     //Define words: cümleyi köklere ayrıştırarak dizi halinde tutulacak.
-    //type => 1: default, 2: welcome, 3: active, 4:ending
+    //type => 1: default, 2: welcome, 3:ending
     protected $fillable = [
         'id', 'name', 'type','define_words', 'output', 'forward', 'forwardID',
         'has_variable', 'variable_names', 'variable_questions', 'variable_values',

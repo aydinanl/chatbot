@@ -32,7 +32,7 @@ class IntentCtrl extends Controller
 
         $intent = new Intents;
         $intent->name = trim($request->name);
-        $intent->type = trim($request->type);
+        $intent->type = (integer) trim($request->type);
 
         $api = collect((new NLPAPI)
             ->getNlpWords(strtolower(trim($request->define_words)))->json_response);

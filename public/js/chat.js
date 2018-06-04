@@ -2,9 +2,16 @@
 /*global $, jQuery, alert*/
 
 $(document).ready(function () {
-    var spinner = new Spinner("body");
 
     "use strict";
+
+    $('.chat-left-inner > .chatonline').slimScroll({
+        height: '100%',
+        position: 'right',
+        size: "0px",
+        color: '#dcdcdc'
+
+    });
     $(function () {
         $(window).on("load", function () { // On load
             $('.chat-list').css({
@@ -16,59 +23,27 @@ $(document).ready(function () {
                 'height': (($(window).height()) - 470) + 'px'
             });
         });
-
-
-
     });
 
-    var chatList = $('.chat-list');
+    // this is for the left-aside-fix in content area with scroll
 
-    $("#send-button").on("click", function () {
-
-        var message = $("#message").val();
-        var view =
-        '<li  class="odd">' +
-            '<div class="chat-image"> <img alt="male" src="/plugins/images/users/ritesh.jpg"> </div>' +
-                '<div class="chat-body">' +
-                '<div class="chat-text">' +
-                    '<h4>Chatbot</h4>' +
-                    '<p>' + message + '</div>' +
-            '</div>' +
-        '</li>';
-        chatList.append(view);
-
-        $("#message").val("");
-
-        spinner.fadeIn('Lütfen bekleyiniz.');
-        $.post("/api/chatbot", { message: message})
-            .done(function( data ) {
-                var response =
-                '<li>' +
-                    '<div class="chat-image"> <img alt="male" src="/plugins/images/users/ritesh.jpg"> </div>' +
-                    '<div class="chat-body">' +
-                    '<div class="chat-text">' +
-                    '<h4>Chatbot</h4>' +
-                    '<p>' + data + '</div>' +
-                    '</div>' +
-                '</li>';
-                spinner.fadeOut();
-                chatList.append(response);
+    $(function () {
+        $(window).on("load", function () { // On load
+            $('.chat-left-inner').css({
+                'height': (($(window).height()) - 240) + 'px'
             });
-
-
-/*
-        $.ajax({
-            contentType: "application/json; charset=utf-8",
-            method: 'POST',
-            url: "http://localhost:8020/api/chatbot",
-            dataType: "json",
-            data: {'message' : message}
-        }).success(function (data) {
-            console.log(data);
-        }).fail(function (error) {
-
-            reject(error);
         });
-*/
+        $(window).on("resize", function () { // On resize
+            $('.chat-left-inner').css({
+                'height': (($(window).height()) - 240) + 'px'
+            });
+        });
     });
+
+
+    $(".open-panel").on("click", function () {
+        $(".chat-left-aside").toggleClass("open-pnl");
+        $(".open-panel i").toggleClass("ti-angle-left");
+    });
+
 });
