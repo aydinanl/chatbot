@@ -51,4 +51,23 @@ class IntentsCtrl extends Controller
             return redirect("/login" );
         }
     }
+
+    //Delete Intent
+    public function intentDelete($id,Request $request)
+    {
+        if($request->session()->get('token') && $request->session()->get('id')){
+            $q = (new Intents)->find($id);
+            try {
+                $q->delete();
+            } catch (\Exception $e) {
+                dd($e);
+            }
+
+            return redirect()
+                ->back()
+                ->with('success-message', 'Soru Silinmiştir.');
+        }else{
+            return redirect("/login" );
+        }
+    }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
-
 /**
  * @property int $_id
  * @property \Carbon\Carbon $created_at
@@ -14,7 +13,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Intents extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     protected $table = 'intents';
     protected $dateFormat = 'U';

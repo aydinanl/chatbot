@@ -31,7 +31,7 @@ Route::middleware(['CheckTokenWeb'])->group(function (){
     Route::get('/admin/intent/add', 'Admin\IntentsCtrl@addIndex');
     Route::get('/admin/intent/edit/{id}', 'Admin\IntentsCtrl@editIndex');
     Route::post('/admin/intent/add', 'Admin\IntentsCtrl@addIntent');
-
+    Route::get('/admin/intent/delete/{id}', 'Admin\IntentsCtrl@intentDelete')->name('intent-delete');
 
     //Profile
     Route::get('/admin/profile', 'Admin\ProfileCtrl@index');

@@ -56,7 +56,8 @@
                                     </td>
                                     <td>
                                         <a href="/admin/intent/edit/{{$intent['id']}}" class="btn btn-success btn-circle"><i class="fa fa-link"></i> </a>
-                                        <a href="/admin/intent/edit/{{$intent['id']}}" class="btn btn-danger btn-circle"><i class="fa fa-times"></i> </a>
+                                        <a class="btn btn-danger btn-circle sil-button"  data="{{$intent['id']}}"><i class="fa fa-times"></i> </a>
+                                        <input class="intent-id" type="hidden" value="{{$intent['id']}}" data="{{$intent['id']}}">
                                     </td>
                                 </tr>
                                 @endforeach
@@ -76,8 +77,35 @@
     <script>
         var token = "{{$token}}";
         $(document).ready(function() {
-            $('#intentsTable').DataTable(
-            );
+            $('#intentsTable').DataTable();
+
+            var del_btn = $('.sil-button');
+            //Open confirm button when click on delete button.
+            del_btn.on('click',function (event) {
+                console.log("tıklandı");
+
+                swal({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Confirm",
+                    cancelButtonText: "Cancel",
+                    closeOnConfirm: false
+                }, function(){
+                    var id = $(".intent-id[data=" + $(event.target).attr('data') + "]").val();
+                    console.log(id);
+
+                    swal.close();
+                    $.ajax({
+                        "method": "get",
+                        "url": '/admin/intent/delete/' + id
+                    }).done(function (data) {
+                        location.reload();
+                    }).fail();
+                });
+            });
         });
     </script>
 @endsection

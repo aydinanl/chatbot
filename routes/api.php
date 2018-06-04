@@ -42,4 +42,4 @@ Route::post('/chatbot', 'ChatCtrl@receive');
 
 Route::post('/feedback', 'TestCtrl@giveFeedback');
 Route::get('/test-get', 'TestCtrl@testGet');
-Route::get('/get-time', 'TestCtrl@getTime');
+Route::get('/now', 'TestCtrl@getTime');
