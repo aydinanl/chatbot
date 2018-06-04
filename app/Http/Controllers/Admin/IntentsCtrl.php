@@ -26,9 +26,11 @@ class IntentsCtrl extends Controller
     public function addIndex(Request $request)
     {
         if($request->session()->get('token') && $request->session()->get('id')){
+            $intents = Intents::all();
             return view('admin.intentAddIndex', [
                 'user' => $request->user,
                 'token' => $request->session()->get('token'),
+                'intents' => $intents
             ]);
         }else{
             return redirect("/login" );

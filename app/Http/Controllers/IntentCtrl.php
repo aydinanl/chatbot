@@ -68,7 +68,7 @@ class IntentCtrl extends Controller
         }
 
         //Forward
-        if(isset($request->forward)){
+        if((boolean) $request->forward === true){
             $intent->forward = (boolean) trim($request->forward);
             $intent->forwardID = trim($request->forwardID);
         }

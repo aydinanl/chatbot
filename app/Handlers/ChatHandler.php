@@ -61,8 +61,17 @@ class ChatHandler
 
     public static function intentHasForward(Intents $intent)
     {
-        // TODO çoklu forwardID olarak düzenle.
+        // TODO correct flow. check forwarded intent has variable => has opreration.
         $forward = Intents::find($intent['forwardID']);
+
+        if($forward['has_variable'] === true){
+            return self::intentHasVariable($forward);
+        }
+
+        if($forward['has_variable'] === true) {
+            return self::intentHasOperation($forward);
+        }
+
         $answer = [];
         array_push($answer, $intent['output'], $forward['output']);
 

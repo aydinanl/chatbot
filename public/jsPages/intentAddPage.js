@@ -4,8 +4,10 @@ $(document).ready(function() {
     var add_btn = $('#intent-add-button');
     var has_variable_check = $('#has-variable-check');
     var has_operation_check = $('#has-operation-check');
+    var has_forward_check = $('#has-forward-check');
     var has_variable_form = $('#has-variable-form');
     var has_operation_form = $('#has-operation-form');
+    var has_forward_form = $('#has-forward-form');
 
     var process_error = $('.process-error');
     var process_success = $('.process-success');
@@ -13,13 +15,21 @@ $(document).ready(function() {
     process_success.hide();
     has_variable_form.hide();
     has_operation_form.hide();
+    has_forward_form.hide();
 
+    //Show has variable form inputs.
     has_variable_check.on("click",function (event) {
         has_variable_form.toggle();
     });
 
+    //Show has operation form inputs.
     has_operation_check.on("click",function (event) {
         has_operation_form.toggle();
+    });
+
+    //Show has forward form inputs.
+    has_forward_check.on("click",function (event) {
+        has_forward_form.toggle();
     });
 
     var has_variable_question =
@@ -69,6 +79,10 @@ $(document).ready(function() {
             }
             var operation_url = $('#add-intent-operation-url').val();
         }
+        if(has_forward_check.is(':checked')){
+            var has_forward = true;
+            var forwardID = $('#add-intent-forward-id').val();
+        }
 
         var output = $('#add-intent-output').val();
 
@@ -88,6 +102,9 @@ $(document).ready(function() {
                 has_operation: has_operation,
                 operation_type: operation_type,
                 operation_url: operation_url,
+
+                forward: has_forward,
+                forwardID: forwardID,
 
                 output: output
 

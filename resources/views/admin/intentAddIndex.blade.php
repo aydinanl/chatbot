@@ -62,7 +62,7 @@
                                 <!-- Has variable -->
                                 <div class="row m-t-20">
                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <label for="has-variable-check">Has variable?</label>
+                                        <label for="has-variable-check" class="m-r-10">Has variable?</label>
                                         <input id="has-variable-check" name="has_variable" type="checkbox">
                                     </div>
                                 </div>
@@ -91,6 +91,24 @@
                                     </div>
                                     <div class="col-sm-11 col-md-11 col-lg-11">
                                         <input type="text" class="form-control" name="operation_url" id="add-intent-operation-url" placeholder="Operation URL like (http://localhost:8020/api/get-time)">
+                                    </div>
+                                </div>
+
+                                <!-- Has forward -->
+                                <div class="row m-t-20">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <label for="has-forward-check" class="m-r-10">Has forward?</label>
+                                        <input id="has-forward-check" type="checkbox" name="has_operation">
+                                    </div>
+                                </div>
+
+                                <div class="row" id="has-forward-form">
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <select name="select_forward" id="add-intent-forward-id" class="form-control">
+                                            @foreach($intents as $intent)
+                                            <option value="{{$intent['id']}}">{{$intent['name']}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
