@@ -42,6 +42,7 @@ class IntentCtrl extends Controller
             $processed_message[] = ($word->KeywordRoot);
         }
 
+        $intent->question = $request->define_words;
         $intent->define_words = $processed_message;
         $intent->output = trim($request->output);
 
