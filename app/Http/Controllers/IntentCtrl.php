@@ -24,7 +24,8 @@ class IntentCtrl extends Controller
 
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(),$this->createValidator,Utility::validatorMessages());
+        //dd($request->all());
+        $validator = Validator::make($request->all(),$this->createValidator);
         if ($validator->fails()) {
             $error = Utility::formatErrorsArray($validator);
             return response()->json($error);
@@ -47,7 +48,7 @@ class IntentCtrl extends Controller
         $intent->output = trim($request->output);
 
         //Variables
-        if (isset($request->has_variable)){
+        if ((boolean) $request->has_variable === true){
             $intent->has_variable = (boolean) trim($request->has_variable);
             $intent->variable_names = $request->variable_names;
             $intent->variable_questions = $request->variable_questions;
@@ -60,7 +61,7 @@ class IntentCtrl extends Controller
         }
 
         //Operations
-        if (isset($request->has_operation)){
+        if ((boolean) $request->has_operation === true){
             $intent->has_operation = (boolean) trim($request->has_operation);
             $intent->operation_type = strtoupper(trim($request->operation_type));
             $intent->operation_url = trim($request->operation_url);
@@ -72,6 +73,7 @@ class IntentCtrl extends Controller
             $intent->forwardID = trim($request->forwardID);
         }
 
+        //dd($intent);
         $intent->save();
         $intent->id = $intent->_id;
         $intent->save();

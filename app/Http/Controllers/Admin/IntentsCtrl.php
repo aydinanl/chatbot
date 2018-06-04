@@ -49,5 +49,4 @@ class IntentsCtrl extends Controller
             return redirect("/login" );
         }
     }
-
 }

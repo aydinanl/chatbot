@@ -30,7 +30,7 @@ Route::middleware(['CheckTokenWeb'])->group(function (){
     Route::get('/admin/intents', 'Admin\IntentsCtrl@index');
     Route::get('/admin/intent/add', 'Admin\IntentsCtrl@addIndex');
     Route::get('/admin/intent/edit/{id}', 'Admin\IntentsCtrl@editIndex');
-    Route::get('/admin/intent/adds', 'Admin\IntentsCtrl@add');
+    Route::post('/admin/intent/add', 'Admin\IntentsCtrl@addIntent');
 
 
     //Profile
