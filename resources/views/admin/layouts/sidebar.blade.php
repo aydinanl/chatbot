@@ -19,7 +19,7 @@
             </div>
         </div>
         <ul class="nav" id="side-menu">
-            <li> <a href="/admin/dashboard"><i class="mdi mdi-av-timer fa-fw"></i><span class="hide-menu">Home</span></a> </li>
+            <li> <a href="/admin/dashboard"><i class="mdi mdi-av-timer fa-fw"></i><span class="hide-menu">Dashboard</span></a> </li>
             <li> <a href="/admin/intents"><i class="ti-layout-list-thumb fa-fw"></i><span class="hide-menu">Intent</span></a> </li>
 
             <li class="devider"></li>

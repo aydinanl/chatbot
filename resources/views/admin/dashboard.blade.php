@@ -21,45 +21,45 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6 col-xs-12">
                     <div class="white-box analytics-info">
-                        <h3 class="box-title">Toplam Sayfa</h3>
+                        <h3 class="box-title">Total Intent</h3>
                         <ul class="list-inline two-part">
                             <li>
                                 <div id="sparklinedash"></div>
                             </li>
-                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">115</span></li>
+                            <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">{{$total_C['intent']}}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col-xs-12">
                     <div class="white-box analytics-info">
-                        <h3 class="box-title">Toplam Yazı</h3>
+                        <h3 class="box-title">Total Message</h3>
                         <ul class="list-inline two-part">
                             <li>
                                 <div id="sparklinedash3"></div>
                             </li>
-                            <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">2</span></li>
+                            <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">{{$total_C['message']}}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col-xs-12">
                     <div class="white-box analytics-info">
-                        <h3 class="box-title">Toplam Görüntülenme</h3>
+                        <h3 class="box-title">Total Seen</h3>
                         <ul class="list-inline two-part">
                             <li>
                                 <div id="sparklinedash2"></div>
                             </li>
-                            <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">4</span></li>
+                            <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">{{$total_C['seen']}}</span></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6 col-xs-12">
                     <div class="white-box analytics-info">
-                        <h3 class="box-title">Okunmamış İletişim</h3>
+                        <h3 class="box-title">Total UNSUCCESS</h3>
                         <ul class="list-inline two-part">
                             <li>
                                 <div id="sparklinedash4"></div>
                             </li>
-                            <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">5</span></li>
+                            <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="text-danger">{{$total_C['unsuccess_c']}}</span></li>
                         </ul>
                     </div>
                 </div>
@@ -68,65 +68,63 @@
             <!--row -->
             <!-- /.row -->
             <div class="row">
-                <div class="col-md-12 col-lg-8 col-sm-12 col-xs-12">
-                    <div class="white-box">
-                        <h3 class="box-title">Products Yearly Sales</h3>
-                        <ul class="list-inline text-right">
-                            <li>
-                                <h5><i class="fa fa-circle m-r-5 text-info"></i>Mac</h5> </li>
-                            <li>
-                                <h5><i class="fa fa-circle m-r-5 text-inverse"></i>Windows</h5> </li>
-                        </ul>
-                        <div id="ct-visits" style="height: 405px;"></div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12">
-                    <div class="panel">
-                        <div class="p-20">
-                            <div class="row">
-                                <div class="col-xs-8">
-                                    <h4 class="m-b-0">Total Earnings</h4>
-                                    <h2 class="m-t-0 font-medium">$580.50</h2>
-                                </div>
-                                <div class="col-xs-4 p-20">
-                                    <select class="form-control">
-                                        <option>DEC</option>
-                                        <option>JAN</option>
-                                        <option>FEB</option>
-                                    </select>
+                <div class="col-md-8">
+                    <div class="panel-group" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="font-bold"> What is Chatbot? </a> </h4> </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    It is an assistant that communicates with us through text messages, a virtual companion that integrates into websites, applications or instant messengers and helps entrepreneurs to get closer to customers. Such a bot is an automated system of communication with users.
                                 </div>
                             </div>
                         </div>
-                        <div class="panel-footer bg-extralight">
-                            <ul class="earning-box">
-                                <li>
-                                    <div class="er-row">
-                                        <div class="er-pic"><img src="/plugins/images/users/genu.jpg" alt="varun" width="60" class="img-circle"></div>
-                                        <div class="er-text">
-                                            <h3>Andrew Simon</h3><span class="text-muted">10-11-2016</span></div>
-                                        <div class="er-count ">$<span class="counter">46</span></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="er-row">
-                                        <div class="er-pic"><img src="/plugins/images/users/govinda.jpg" alt="varun" width="60" class="img-circle"></div>
-                                        <div class="er-text">
-                                            <h3>Daniel Kristeen</h3><span class="text-muted">10-11-2016</span></div>
-                                        <div class="er-count ">$<span class="counter">55</span></div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="er-row">
-                                        <div class="er-pic"><img src="/plugins/images/users/pawandeep.jpg" alt="varun" width="60" class="img-circle"></div>
-                                        <div class="er-text">
-                                            <h3>Chris gyle</h3><span class="text-muted">10-11-2016</span></div>
-                                        <div class="er-count ">$<span class="counter">66</span></div>
-                                    </div>
-                                </li>
-                                <li class="center">
-                                    <a class="btn btn-rounded btn-info btn-block p-10">Withdrow money</a>
-                                </li>
-                            </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title"> <a class="collapsed font-bold" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" > What is working logic of Chatbot? </a> </h4> </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    Main working logic on Chatbot is creation a system for that answering users to their question automatically. For that we create Intent logic for taking and responding answer to user. Intent is a simply a capsule that include many variable like question that comes from user. Chatbot system matches this questions and send answer to user due to that intent.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title"> <a class="font-bold collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" > How to create Intent? </a> </h4> </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, inable VHS.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingFour"> <a class="collapsed font-bold panel-title" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> How to test Chatbot? </a> </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, inable VHS. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4 col-sm-12">
+                    <div class="white-box">
+                        <h3 class="box-title">Recent Messages</h3>
+                        <div class="comment-center p-t-10">
+                            <div class="comment-body">
+                                <div class="user-img"> <img src="/img/no-avatar.png" alt="user" class="img-circle"> </div>
+                                <div class="mail-contnet">
+                                    <h5>Chatbot User</h5>
+                                    <span class="time">16:25:03   20  may 2018</span> <span class="label label-rouded label-success">REPLIED</span>
+                                    <br/><span class="mail-desc">Merhaba, sorun bildirmek istiyordum.</span>
+                                </div>
+                            </div>
+                            <div class="comment-body b-none">
+                                <div class="user-img"> <img src="/img/no-avatar.png" alt="user" class="img-circle"> </div>
+                                <div class="mail-contnet">
+                                    <h5>Chatbot User</h5>
+                                    <span class="time">18:45:56   20  may 2018</span> <span class="label label-rouded label-success">REPLIED</span>
+                                    <br/><span class="mail-desc">Hava durumu nedir?</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

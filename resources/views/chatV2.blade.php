@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="/plugins/images/favicon.png">
-    <title>Chat Box</title>
+    <title>Chatbot</title>
 
     <!-- Custom CSS -->
     <link href="/css/chatV2.css" rel="stylesheet">

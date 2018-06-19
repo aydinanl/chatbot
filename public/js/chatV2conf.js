@@ -1,3 +1,8 @@
+$.get("/api/chatbot/increase-seen")
+    .done(function (data) {
+
+    });
+
 var $messages = $('.messages-content'),
     d, h, m,
     i = 0;

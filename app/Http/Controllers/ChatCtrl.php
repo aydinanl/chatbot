@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Api\NLP\NLPAPI;
 use App\Handlers\ChatHandler;
 use App\Handlers\ConservationHandler;
+use App\Handlers\StatsHandler;
 use App\Models\Feedback;
 use App\Models\Intents;
 use Illuminate\Http\Request;
@@ -19,6 +20,9 @@ class ChatCtrl extends Controller
         if (!$message) {
             return response()->json('Size nasıl yardımcı olabilirim?');
         }
+
+        //Stats
+        (new StatsHandler)->increaseMessageCount();
 
         //Process message with NLP API.
         $api = collect((new NLPAPI)->getNlpWords($message)->json_response);
@@ -49,6 +53,7 @@ class ChatCtrl extends Controller
             }
         }
 
+        (new StatsHandler)->increaseUnsuccessConservationCount();
         //No intent could matched.
         return response()->json('Bu konu hakkında bilgi veremiyorum.');
     }

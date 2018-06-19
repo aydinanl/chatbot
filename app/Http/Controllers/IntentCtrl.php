@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Api\NLP\NLPAPI;
 use App\Handlers\ChatHandler;
 use App\Handlers\ConservationHandler;
+use App\Handlers\StatsHandler;
 use App\Helpers\Utility;
 use App\Models\Intents;
 use Illuminate\Http\Request;
@@ -152,5 +153,10 @@ class IntentCtrl extends Controller
 
         return response()->json($ans);
 
+    }
+
+    public function increaseSeenC()
+    {
+        (new StatsHandler())->increaseSeenCount();
     }
 }
