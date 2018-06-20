@@ -10,9 +10,9 @@
                 <div><img src="/img/no-avatar.png" alt="user-img" class="img-circle"></div>
                 <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@if(isset($user) && $user['username']){{ucfirst($user['username'])}}@endif<span class="caret"></span></a>
                 <ul class="dropdown-menu animated flipInY">
-                    <li><a href="/admin/profile"><i class="ti-user"></i> Profilim</a></li>
-                    <li><a href="/" target="_blank"><i class="ti-home"></i> Ön Siteye Git</a></li>
-                    <li><a href="/admin/profile"><i class="ti-settings"></i> Kullanıcı Ayarları</a></li>
+                    <li><a href="/admin/profile"><i class="ti-user"></i> Profile</a></li>
+                    <li><a href="/" target="_blank"><i class="ti-home"></i> Front Site</a></li>
+                    <li><a href="/admin/profile"><i class="ti-settings"></i> User Settings</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                 </ul>

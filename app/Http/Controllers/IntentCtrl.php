@@ -96,11 +96,49 @@ class IntentCtrl extends Controller
 
     public function update($id,Request $request)
     {
-        // TODO comleate update function.
         $intent = Intents::find($id);
 
-        $intent->name = 'iau';
+        if($request->name){
+            $intent->name = $request->name;
+        }
+
+        if($request->type){
+            $intent->type = $request->type;
+        }
+
+
+
+        if($request->define_words){
+            $api = collect((new NLPAPI)
+                ->getNlpWords(strtolower(trim($request->define_words)))->json_response);
+
+            $processed_message = [];
+            foreach ($api['Keywords'] as $word){
+                $processed_message[] = ($word->KeywordRoot);
+            }
+
+            $intent->define_words = $processed_message;
+        }
+
+
+        if($request->has_operation){
+            $intent->has_operation = $request->has_operation;
+        }
+
+        if($request->operation_type){
+            $intent->operation_type = $request->operation_type;
+        }
+
+        if($request->operation_url){
+            $intent->operation_url = $request->operation_url;
+        }
+
+        if($request->output){
+            $intent->output = $request->output;
+        }
+
         $intent->save();
+        return response()->json($intent);
     }
 
     public function delete($id)

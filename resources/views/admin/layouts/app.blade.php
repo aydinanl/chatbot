@@ -79,29 +79,6 @@
             <!-- Search input and Toggle icon -->
             <ul class="nav navbar-top-links navbar-left">
                 <li><a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"> <i class="mdi mdi-gmail"></i>
-                        <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                    </a>
-                    <ul class="dropdown-menu mailbox animated bounceInDown">
-                        <li>
-                            <div class="drop-title">Bilgilendirme</div>
-                        </li>
-                        <li>
-                            <div class="message-center">
-                                <a href="#">
-                                    <div class="user-img"> <img src="/img/no-avatar.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                    <div class="mail-contnet">
-                                        <h5>Sistem bilgilendirmesi</h5> <span class="mail-desc">Başarılı bir şekilde admin panele giriş yaptınız, sitenizi istediğiniz gibi düzenleyebilirsiniz.</span> <span class="time">admin</span> </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li style="display: none">
-                            <a class="text-center" href="javascript:void(0);"> <strong>See all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-messages -->
-                </li>
             </ul>
             <ul class="nav navbar-top-links navbar-right pull-right">
                 <li class="dropdown">
@@ -109,17 +86,17 @@
                     <ul class="dropdown-menu dropdown-user animated flipInY">
                         <li>
                             <div class="dw-user-box">
-                                <div class="u-img"><img src="@if(isset($user) && $user['avatar']){{$user['avatar']}}@endif"/></div>
+                                <div class="u-img"><img src="/img/no-avatar.png"/></div>
                                 <div class="u-text">
                                     <h4>@if(isset($user) && $user['username']){{ucfirst($user['username'])}}@endif</h4>
                                     <p class="text-muted">@if(isset($user) && $user['email']){{$user['email']}}@endif</p><a href="/admin/profile" class="btn btn-rounded btn-danger btn-sm">Profili görüntüle</a></div>
                             </div>
                         </li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/" target="_blank"><i class="ti-home"></i> Ön Siteye Git</a></li>
-                        <li><a href="/admin/profile"><i class="ti-settings"></i> Kullanıcı Ayarları</a></li>
+                        <li><a href="/" target="_blank"><i class="ti-home"></i> Front Site</a></li>
+                        <li><a href="/admin/profile"><i class="ti-settings"></i> User Settings</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/logout"><i class="fa fa-power-off"></i> Çıkış yap</a></li>
+                        <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>

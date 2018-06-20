@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     //Initialized
     var add_btn = $('#intent-add-button');
+    var update_btn = $('#intent-update-button');
     var has_variable_check = $('#has-variable-check');
     var has_operation_check = $('#has-operation-check');
     var has_forward_check = $('#has-forward-check');
@@ -31,6 +32,12 @@ $(document).ready(function() {
     has_forward_check.on("click",function (event) {
         has_forward_form.toggle();
     });
+
+    //If has operation exist show the area.
+    if(has_operation == true){
+        has_operation_check.attr('checked',true);
+        has_operation_form.toggle();
+    }
 
     var has_variable_question =
         "<div class='row m-t-15'>" +
@@ -128,6 +135,64 @@ $(document).ready(function() {
                     process_success.fadeOut(1000);
 
                     //Clear values after inserting to db successfully.
+                }
+            }
+        });
+
+    });
+
+    //Update Intent
+    update_btn.on('click',function (event) {
+
+
+        var name = $('#add-intent-name').val();
+        var type = $('#select-intent-type').val();
+        var define_words = $('#add-intent-define-words').val();
+
+
+        if(has_operation_check.is(':checked')){
+            var has_operation = true;
+            var operation_type = '';
+            if ($('#add-intent-operation-type').val() == 1){
+                operation_type = 'GET'
+            }else{
+                operation_type = 'POST'
+            }
+            var operation_url = $('#add-intent-operation-url').val();
+        }
+        var output = $('#add-intent-output').val();
+
+
+        $.ajax({
+            url: '/api/chatbot/intent/' + id,
+            type: 'put',
+            data: {
+                id: id,
+                name: name,
+                type: type,
+                define_words: define_words,
+
+                has_operation: has_operation,
+                operation_type: operation_type,
+                operation_url: operation_url,
+
+                output: output
+            },
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if(data.error){
+                    process_error.fadeIn();
+                    $('.error-message').html(data.error.message);
+                    //console.log(data.error.message);
+                    process_error.fadeOut(1000);
+                }else{
+                    process_success.fadeIn();
+                    $('.success-message').html("Successfully updated.");
+                    process_success.fadeOut(1000);
                 }
             }
         });

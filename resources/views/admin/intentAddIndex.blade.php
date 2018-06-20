@@ -139,6 +139,8 @@
     <script src="/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
     <script>
         var token = "{{$token}}";
+        var has_operation = "{{$intent['has_operation']}}";
+
     </script>
     <script src="/jsPages/intentAddPage.js"></script>
 @endsection

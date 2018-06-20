@@ -30,6 +30,7 @@ Route::middleware(['AllowedUserTypes:admin,user'])->group(function (){
 
 Route::post('/chatbot/intent', 'IntentCtrl@create');
 Route::get('/chatbot/intent', 'IntentCtrl@read');
+Route::put('/chatbot/intent/{id}', 'IntentCtrl@update');
 Route::get('/chatbot/intent/{id}', 'IntentCtrl@readSingle');
 Route::delete('/chatbot/intent/{id}', 'IntentCtrl@delete');
 Route::post('/chatbot/intent/{id}/{order}/insert-value', 'IntentCtrl@insertValue');

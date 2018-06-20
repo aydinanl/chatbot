@@ -42,10 +42,18 @@ class IntentsCtrl extends Controller
     {
         if($request->session()->get('token') && $request->session()->get('id')){
             $intent =  (new Intents)->find($id);
+            //dd($intent);
+            $define_words = '';
+            foreach ($intent['define_words'] as $word){
+                $define_words .= $word . ' ';
+            }
+            $intents = Intents::all();
             return view('admin.intentEditIndex', [
                 'user' => $request->user,
                 'token' => $request->session()->get('token'),
-                'intent' => $intent
+                'intent' => $intent,
+                'intents' => $intents,
+                'define_words' => trim($define_words)
             ]);
         }else{
             return redirect("/login" );
