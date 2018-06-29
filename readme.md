@@ -14,5 +14,7 @@ Used this technologies when developing this project.
 
 Chatbot supply companies and customers to get solution in most efficacy and fast way.  In these facilities chat bot’s aim is get data from customer and companies and resolve quickly, and decrease companies work load and increase customer satisfaction.
 
+## Contributors
+
 * [Aydın Anlıaçık](https://github.com/aydinanl)
 * [Batuhan Saygılı](https://github.com/koust)
