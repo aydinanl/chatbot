@@ -139,7 +139,7 @@
     <script src="/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
     <script>
         var token = "{{$token}}";
-        var has_operation = "{{$intent['has_operation']}}";
+        var has_operation = false;
 
     </script>
     <script src="/jsPages/intentAddPage.js"></script>

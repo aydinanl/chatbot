@@ -18,8 +18,8 @@
 <body>
 <div class="chat">
     <div class="chat-title">
-        <h1>ChatBot Project</h1>
-        <h2>IAU</h2>
+        <h1>ChatBot </h1>
+        <h2>Project</h2>
         <figure class="avatar">
             <img src="/img/avatar.jpg" /></figure>
     </div>

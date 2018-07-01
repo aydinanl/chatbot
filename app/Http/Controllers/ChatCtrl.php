@@ -36,24 +36,45 @@ class ChatCtrl extends Controller
         //Get all intents for matching.
         $intents = Intents::all();
 
+
         $count = 0;
         //Match intent due to receive message.
+        $matched_root_count = [];
         foreach ($intents as $intent) {
-            $intent_root_count = \count($intent['define_words']);
-            $has_count = $intent_root_count - 3;
-
+            //Find every root's of intent that has been matched with message.
             foreach ($processed_message as $messages) {
                 if (\in_array($messages, $intent['define_words'], true)) {
                     $count++;
+                }
+            }
+            $matched_root_count[] = [$intent['id'] => $count];
+            //array_push($matched_root_count,$p);
+            $count = 0;
+        }
+        
+        $min = 0;
+        $max = 0;
+        $intent_id = '';
 
-                    if ($count >= $has_count) {
-                        return $this->response($intent);
-                    }
+        foreach ($matched_root_count as $index => $val) {
+
+            foreach ($val as $i => $dval) {
+                $max = $dval;
+                if ($max > $min) {
+                    $min = $max;
+                    $intent_id = $i;
                 }
             }
         }
+        //Get matched intent.
+        $found_intent = Intents::find($intent_id);
+
+        if(isset($found_intent)){
+            return $this->response($found_intent);
+        }
 
         (new StatsHandler)->increaseUnsuccessConservationCount();
+
         //No intent could matched.
         return response()->json('Bu konu hakkında bilgi veremiyorum.');
     }

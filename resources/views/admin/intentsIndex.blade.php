@@ -50,7 +50,7 @@
                                             @endif
 
                                             @if($intent['type'] === 3)
-                                                <span class="label label-rouded label-denger">ending</span>
+                                                <span class="label label-rouded label-danger">ending</span>
                                              @endif
                                         @endif
                                     </td>
