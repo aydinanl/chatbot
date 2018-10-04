@@ -17,10 +17,10 @@ Used technologies when developing this project.
 Chatbot supply companies and customers to get solution in most efficacy and fast way.  In these facilities Chatbot’s aim is get data from customer and companies and resolve quickly, and decrease companies work load and increase customer satisfaction.
 
 ## Chatbot Demo
-<img src="http://aydinanliacik.com/img/post/chatbot-demo.gif" data-canonical src="http://aydinanliacik.com/img/post/chatbot-demo.gif"/>
+<img src="https://aydinanliacik.com/img/post/chatbot-demo.gif" data-canonical src="https://aydinanliacik.com/img/post/chatbot-demo.gif"/>
 
 ## Admin Panel Demo - Intent Creation
-<img src="http://aydinanliacik.com/img/post/chatbot-admin.gif" data-canonical src="http://aydinanliacik.com/img/post/chatbot-admin.gif"/>
+<img src="https://aydinanliacik.com/img/post/chatbot-admin.gif" data-canonical src="https://aydinanliacik.com/img/post/chatbot-admin.gif"/>
 
 ## Contributors
 
